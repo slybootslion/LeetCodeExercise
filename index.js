@@ -1,2 +1,2 @@
 require('@babel/register')
-require('./src/933')
+require('./src/76')
