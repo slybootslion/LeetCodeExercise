@@ -1,4 +1,4 @@
-const isSameTree = (p, q) => {
+/* const isSameTree = (p, q) => {
   let res = true
   const rec = (p, q) => {
     if (!res) return false
@@ -13,6 +13,12 @@ const isSameTree = (p, q) => {
   }
   rec(p, q)
   return res
+} */
+
+const isSameTree = (p, q) => {
+  if (!p && !q) return true
+  if (p && q && p.val === q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right)) return true
+  return false
 }
 
 isSameTree()
