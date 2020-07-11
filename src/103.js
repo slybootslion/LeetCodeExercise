@@ -1,38 +1,31 @@
-var zigzagLevelOrder = function(root) {
-  if(root==null)
-    return []
-  var arr=[root]
-  var res=[]
-  var go=true
-  while(arr.length>0){
-    var n=arr.length
-    var now=[]
-    if(go){
-      while(n-->0){
-        var node=arr.shift()
-        now.push(node.val)
-        if(node.left!=null)arr.push(node.left)
-        if(node.right!=null)arr.push(node.right)
+const zigzagLevelOrder = (root) => {
+  if (!root) return []
+  const arr = [root]
+  const res = []
+  let s = true
+  while (arr.length) {
+    let len = arr.length
+    const temp = []
+    if (s) {
+      while (len--) {
+        const node = arr.shift()
+        temp.push(node.val)
+        if (node.left) arr.push(node.left)
+        if (node.right) arr.push(node.right)
       }
-      res.push(now)
-    }else{
-      while(n-->0){
-        var node=arr.pop()
-        now.push(node.val)
-        if(node.right!=null)arr.unshift(node.right)
-        if(node.left!=null)arr.unshift(node.left)
+      res.push(temp)
+    } else {
+      while (len--) {
+        const node = arr.pop()
+        temp.push(node.val)
+        if (node.right) arr.unshift(node.right)
+        if (node.left) arr.unshift(node.left)
       }
-      res.push(now)
+      res.push(temp)
     }
-    go=!go
+    s = !s
   }
   return res
-};
-
-// const zigzagLevelOrder = (root) => {
-//   if (!root) return []
-//   const arr = [root]
-//
-// }
+}
 
 zigzagLevelOrder()
