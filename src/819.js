@@ -1,5 +1,5 @@
 const mostCommonWord = (paragraph, banned) => {
-  const reg = /[!?',;.\s]/g
+  const reg = /[!?',;.]/g
   const arr = paragraph.toLowerCase().replace(reg, ' ').split(' ')
   const map = new Map()
   for (let i = 0; i < arr.length; i++) {
