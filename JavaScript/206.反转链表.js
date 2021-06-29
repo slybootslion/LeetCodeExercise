@@ -26,6 +26,7 @@ Accepted
 Your runtime beats 36.69 % of javascript submissions
 Your memory usage beats 45.02 % of javascript submissions (39.7 MB)
 */
+/* 
 var reverseList = function (head) {
   let p = head
   let l = null
@@ -37,5 +38,25 @@ var reverseList = function (head) {
   }
   return l
 };
+*/
+
+/* 
+方法二：
+递归实现
+*/
+/* 
+Accepted
+28/28 cases passed (88 ms)
+Your runtime beats 70.88 % of javascript submissions
+Your memory usage beats 6.45 % of javascript submissions (40.2 MB)
+*/
+const reverseList = head => {
+  if (!head || head.next == null) return head
+  let last = reverseList(head.next)
+  head.next.next = head
+  head.next = null
+  return last
+}
+
 // @lc code=end
 
