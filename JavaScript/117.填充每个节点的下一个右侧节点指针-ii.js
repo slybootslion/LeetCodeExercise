@@ -19,7 +19,7 @@
  * @param {Node} root
  * @return {Node}
  */
-// 自己的写法，套模板，就是能过当然并不好
+// 自己的写法，套模板，就是能过，当然并不好
 /* 
 var connect = function (root) {
   if (!root) return root
