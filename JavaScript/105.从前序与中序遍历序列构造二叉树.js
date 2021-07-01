@@ -18,21 +18,30 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-var buildTree = function (preorder, inorder) {
+/* 
+思路：
+通过前序遍历找根，通过中序遍历找左右树，然后截取对应的数组。
+剩下的交给递归
+*/
+/* 
+Accepted
+202/202 cases passed (204 ms)
+Your runtime beats 30.02 % of javascript submissions
+Your memory usage beats 41.38 % of javascript submissions (110.4 MB)
+*/
+const buildTree = (preorder, inorder) => {
   if (!inorder.length) return null
-  const rootVal = preorder[0]
-  const treeNode = new TreeNode(rootVal)
-  
-  const mid = inorder.indexOf(rootVal)
-  const iLeftArr = inorder.slice(0, mid)
-  const pLeftArr = preorder.slice(1, mid + 1)
-  treeNode.left = buildTree(pLeftArr, iLeftArr)
-  
-  const iRightArr = inorder.slice(mid + 1)
-  const pRightArr = preorder.slice(mid + 1)
-  treeNode.right = buildTree(pRightArr, iRightArr)
-  
+  const node = preorder[0]
+  const treeNode = new TreeNode(node)
+  const mid = inorder.indexOf(node)
+  const iLeft = inorder.slice(0, mid)
+  const pLeft = preorder.slice(1, mid + 1)
+  treeNode.left = buildTree(pLeft, iLeft)
+  const iRight = inorder.slice(mid + 1)
+  const pRight = preorder.slice(pLeft.length + 1)
+  treeNode.right = buildTree(pRight, iRight)
   return treeNode
-};
+}
+
 // @lc code=end
 

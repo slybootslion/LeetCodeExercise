@@ -18,18 +18,28 @@
  * @param {number[]} postorder
  * @return {TreeNode}
  */
+/* 
+思路：
+通过后续遍历来找根节点，通过中序遍历找左右子树（长度）
+剩下的交给递归，其他画个图还是比较清晰的
+*/
+/* 
+Accepted
+202/202 cases passed (208 ms)
+Your runtime beats 23.98 % of javascript submissions
+Your memory usage beats 23.69 % of javascript submissions (110.6 MB)
+*/
 var buildTree = function (inorder, postorder) {
   if (!inorder.length) return null
-  const rootVal = postorder.pop()
-  const treeNode = new TreeNode(rootVal)
-
-  const midIndex = inorder.indexOf(rootVal)
-  const iLeftArr = inorder.slice(0, midIndex)
-  const pLeftArr = postorder.slice(0, iLeftArr.length)
-  treeNode.left = buildTree(iLeftArr, pLeftArr)
-  const iRightArr = inorder.slice(midIndex + 1)
-  const pRightArr = postorder.slice(iLeftArr.length, iLeftArr.length + iRightArr.length)
-  treeNode.right = buildTree(iRightArr, pRightArr)
+  const node = postorder[postorder.length - 1]
+  const treeNode = new TreeNode(node)
+  const mid = inorder.indexOf(node)
+  const iLeft = inorder.slice(0, mid)
+  const pLeft = postorder.slice(0, iLeft.length)
+  treeNode.left = buildTree(iLeft, pLeft)
+  const iRight = inorder.slice(mid + 1)
+  const pRight = postorder.slice(iLeft.length, iLeft.length + iRight.length)
+  treeNode.right = buildTree(iRight, pRight)
   return treeNode
 };
 // @lc code=end
