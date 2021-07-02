@@ -25,32 +25,34 @@
 贴个后续遍历更好理解的算法：
 https://leetcode-cn.com/problems/number-of-good-leaf-nodes-pairs/solution/js-tshou-xu-by-blzbanme/
 */
+/* 
+Accepted
+113/113 cases passed (392 ms)
+Your runtime beats 6.79 % of javascript submissions
+Your memory usage beats 5.55 % of javascript submissions (51.9 MB)
+*/
 var countPairs = function (root, distance) {
   let count = 0
-  const foo = node => {
+  const dfs = node => {
     if (!node) return []
-    if (!node.left  && !node.right) return [0]
-    const l = []
-    const lL = foo(node.left)
-    const rL = foo(node.right)
-    for (let i = 0; i < lL.length ; i++) {
-      const item = lL[i]
-      if (item < distance) l.push(item + 1)
-    }
-    for (let i = 0; i < rL.length ; i++) {
-      const item = rL[i]
-      if (item < distance) l.push(item + 1)
-    }
-    for (let i = 0; i < lL.length ; i++) {
-      const item = lL[i]
-      for (let j = 0; j < rL.length ; j++) {
-        const jtem = rL[j]
-        if (item + jtem + 2 <= distance) count++ 
+    // 返回叶子节点到最近父节点的距离：1
+    if (!node.left && !node.right) return [1]
+    // 递归后续遍历节点数组，没一项是叶子节点到当前节点的距离
+    const leftDeep = dfs(node.left)
+    const rightDeep = dfs(node.right)
+    console.log(leftDeep);
+    // 判断是否好叶子逻辑
+    for (let i = 0; i < leftDeep.length; i++) {
+      const lItem = leftDeep[i]
+      for (let j = 0; j < rightDeep.length; j++) {
+        const rItem = rightDeep[j]
+        lItem + rItem <= distance && count++
       }
     }
-    return l
+    // 后续遍历结束后，返回的节点数组（叶子节点到当前节点的距离+1）
+    return [...leftDeep, ...rightDeep].map(c => ++c)
   }
-  foo(root)
+  dfs(root)
   return count
 };
 // @lc code=end

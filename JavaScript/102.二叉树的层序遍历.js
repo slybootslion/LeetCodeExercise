@@ -22,14 +22,14 @@
 const levelOrder = root => {
   if (!root) return []
   const res = []
-  const dfs = (node, level) => {
+  const bfs = (node, level) => {
     if (!node) return
     if (res.length === level) res.push([])
     res[level].push(node.val)
-    node.left && dfs(node.left, level + 1)
-    node.right && dfs(node.right, level + 1)
+    node.left && bfs(node.left, level + 1)
+    node.right && bfs(node.right, level + 1)
   }
-  dfs(root, 0)
+  bfs(root, 0)
   return res
 }
 
