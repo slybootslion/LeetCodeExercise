@@ -74,7 +74,7 @@ const deserialize = data => {
   const list = data.split(SEP_FLAG)
   // 一个有空值的数组怎么变成一棵树？
   const tool = list => {
-    if (!list) return null
+    if (!list.length) return null
     const node = list.shift()
     if (node === NULL_STRING) return null
     const treeNode = new TreeNode(+node)
@@ -108,7 +108,7 @@ const serialize = root => {
 const deserialize = data => {
   const list = data.split(SEP_FLAG)
   const tool = list => {
-    if (!list) return null
+    if (!list.length) return null
     // 在后续遍历中，数组的最后一项是数组的根节点
     const node = list.pop()
     if (node === NULL_STRING) return null
