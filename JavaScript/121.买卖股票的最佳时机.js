@@ -18,7 +18,7 @@ Accepted
 Your runtime beats 99.28 % of javascript submissions
 Your memory usage beats 98.36 % of javascript submissions (47.2 MB)
 */
-/* 
+
 var maxProfit = function(prices) {
   let minItem = prices[0]
   let max = 0
@@ -30,7 +30,7 @@ var maxProfit = function(prices) {
 
   return max
 }; 
-*/
+
 
 /* 
 双遍历，这是官方提供的解题思路
@@ -40,7 +40,7 @@ but，用他们自己的题解，提交的时候会不通过，显示超时
 /* 
 Time Limit Exceeded
 */
-const maxProfit = prices => {
+/* const maxProfit = prices => {
   let max = 0
   for (let i = 0; i < prices.length; i++) {
     for (let j = i + 1; j < prices.length; j++) {
@@ -49,6 +49,6 @@ const maxProfit = prices => {
     }
   }
   return max
-}
+} */
 // @lc code=end
 
