@@ -50,6 +50,7 @@ Accepted
 Your runtime beats 24.15 % of javascript submissions
 Your memory usage beats 57.58 % of javascript submissions (40.2 MB)
 */
+/* 
 const hasCycle = head => {
   while (head) {
     if (head.isPass) return true
@@ -59,7 +60,27 @@ const hasCycle = head => {
     }
   }
   return false
-}
+} 
+*/
+
+/* 
+思路：额外空间来管理遍历过的元素
+*/
+/* 
+Accepted
+19/19 cases passed (100 ms)
+Your runtime beats 42.85 % of javascript submissions
+Your memory usage beats 7.33 % of javascript submissions (41.9 MB)
+*/
+const hasCycle = head => {
+  const set = new WeakSet()
+  while(head && head.next) {
+    if (set.has(head)) return true
+    else set.add(head)
+    head = head.next
+  }
+  return false
+} 
 
 // @lc code=end
 
