@@ -18,6 +18,9 @@
  * @return {boolean}
  */
 /* 
+没什么特别的思路，就是根据二叉搜索树的概念来
+*/
+/* 
 Accepted
 80/80 cases passed (88 ms)
 Your runtime beats 88.87 % of javascript submissions
@@ -31,5 +34,6 @@ var isValidBST = function (root) {
   }
   return tools(root, -Infinity, Infinity)
 };
+
 // @lc code=end
 
