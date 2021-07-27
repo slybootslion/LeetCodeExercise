@@ -27,21 +27,18 @@ Your runtime beats 25.87 % of javascript submissions
 Your memory usage beats 46.38 % of javascript submissions (64.4 MB)
 */
 /* 
-var isPalindrome = function (head) {
-  let p = head
+const isPalindrome = head => {
   const arr = []
-  while (p) {
-    arr.push(p.val)
-    p = p.next
+  while (head) {
+    arr.push(head.val)
+    head = head.next
   }
-
-  const reArr = arr.reverse()
-  for (let i = 0; i < Math.floor(arr.length / 2); i++) {
-    if (arr[i] !== reArr[reArr.length - 1 - i]) return false
+  for (let i = 0; i < parseInt(arr.length / 2); i++) {
+    if (arr[i] !== arr[arr.length - 1 - i]) return false
   }
   return true
-};
-*/
+}
+ */
 
 /* 
 方法二：反转链表再比对
@@ -111,7 +108,7 @@ const isPalindrome = head => {
   const traverse = right => {
     if (!right) return true
     let res = traverse(right.next)
-    res = res && right.val === left.val
+    res = (res && right.val === left.val)
     left = left.next
     return res
   }
