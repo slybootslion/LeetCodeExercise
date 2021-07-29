@@ -61,7 +61,6 @@ const merge = (nums1, m, nums2, n) => {
     nums1[k] = num2
     k--
   })
-  nums1.sort((a,  b) => a - b)
+  nums1.sort((a, b) => a - b)
 }
 // @lc code=end
-
