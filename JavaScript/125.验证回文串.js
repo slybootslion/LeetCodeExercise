@@ -83,7 +83,6 @@ const isPalindrome = s => {
     }
     const s1 = s[p1].toLowerCase()
     const s2 = s[p2].toLowerCase()
-    console.log(s1, s2)
     if (s1 !== s2) return false
     p1++
     p2--
