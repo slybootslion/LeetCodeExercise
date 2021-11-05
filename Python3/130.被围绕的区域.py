@@ -16,7 +16,6 @@ Your runtime beats 93.82 % of python3 submissions
 Your memory usage beats 24.24 % of python3 submissions (19.3 MB)
 """
 
-
 class Solution:
     def solve(self, board: List[List[str]]) -> None:
         row = len(board)

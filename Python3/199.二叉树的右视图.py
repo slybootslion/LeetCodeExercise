@@ -40,7 +40,7 @@ class Solution:
 """
 
 """
-迭代解法
+深度优先 迭代解法
 Accepted
 215/215 cases passed (32 ms)
 Your runtime beats 69.26 % of python3 submissions
