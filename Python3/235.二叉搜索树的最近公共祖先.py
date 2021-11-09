@@ -55,7 +55,7 @@ class Solution:
 """
 
 """
-官方题解：深度优先，两个队列来管理左右自树
+官方题解：深度优先，两个队列来管理左右子树
 Accepted
 27/27 cases passed (72 ms)
 Your runtime beats 60.45 % of python3 submissions
