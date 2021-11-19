@@ -36,12 +36,12 @@ class Solution:
         return isMirror(root.left, root.right)
 """
 
-
-""" 
-鸡贼的写法
+"""
+dfs鸡贼的写法
 注意！返回结果要转布尔类型，否则过去leetcode会判错（真是个天坑）
 """
 
+"""
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
@@ -54,4 +54,33 @@ class Solution:
                 left.right, right.left))
 
         return isMirror(root.left, root.right)
+"""
+
+"""
+bfs
+Accepted
+197/197 cases passed (36 ms)
+Your runtime beats 56.51 % of python3 submissions
+Your memory usage beats 26.76 % of python3 submissions (15.1 MB)
+"""
+
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        q = [root, root]
+
+        while q:
+            left = q.pop()
+            right = q.pop()
+            if left is None and right is None:
+                continue
+            if left is None or right is None or left.val != right.val:
+                return False
+            q.append(left.left)
+            q.append(right.right)
+            q.append(left.right)
+            q.append(right.left)
+
+        return True
+
 # @lc code=end
