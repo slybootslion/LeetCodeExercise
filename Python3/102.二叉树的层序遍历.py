@@ -17,6 +17,8 @@ Accepted
 Your runtime beats 46.55 % of python3 submissions
 Your memory usage beats 22.31 % of python3 submissions (15.4 MB)
 """
+
+
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         res = []
