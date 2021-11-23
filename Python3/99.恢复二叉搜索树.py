@@ -15,9 +15,9 @@
 """ 
 python的骚操作
 Accepted
-1919/1919 cases passed (60 ms)
-Your runtime beats 44.69 % of python3 submissions
-Your memory usage beats 5.12 % of python3 submissions (15.5 MB)
+1919/1919 cases passed (52 ms)
+Your runtime beats 83.47 % of python3 submissions
+Your memory usage beats 32.58 % of python3 submissions (15.3 MB)
 """
 
 
@@ -26,29 +26,24 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        nums = []
+        left, right = None, None
+        prev = None
 
-        def inorder(node):
+        def handler(node):
+            nonlocal prev, left, right
             if not node:
                 return
-            inorder(node.left)
-            nums.append(node)
-            inorder(node.right)
-        inorder(root)
+            handler(node.left)
+            if not prev:
+                prev = node
+            else:
+                if node.val < prev.val:
+                    right, left = node, prev if left is None else left
+                prev = node
+            handler(node.right)
 
-        def find_two_swapped():
-            left, right = None, None
-            prev = nums[0]
-            for i in range(1, len(nums)):
-                if nums[i].val < prev.val:
-                    right = nums[i]
-                    if left is None:
-                        left = prev
-                prev = nums[i]
-            return left, right
-
-        l, r = find_two_swapped()
-        if l and r:
-            l.val, r.val = r.val, l.val
+        handler(root)
+        if left and right:
+            left.val, right.val = right.val, left.val
 
 # @lc code=end
