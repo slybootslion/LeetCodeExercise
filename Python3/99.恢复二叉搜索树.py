@@ -26,8 +26,7 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        left, right = None, None
-        prev = None
+        left, right, prev = None, None, None
 
         def handler(node):
             nonlocal prev, left, right
