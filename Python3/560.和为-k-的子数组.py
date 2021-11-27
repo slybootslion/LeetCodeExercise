@@ -35,16 +35,12 @@ Your memory usage beats 31.44 % of python3 submissions (17.2 MB)
 
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        m = {0: 1}
-        count, prev = 0, 0
+        count, prev, d = 0, 0, {0: 1}
         for num in nums:
             prev += num
-            if m.get(prev - k):
-                count += m.get(prev - k)
-            if m.get(prev):
-                m[prev] = m.get(prev) + 1
-            else:
-                m[prev] = 1
+            if d.get(prev - k):
+                count += d.get(prev - k)
+            d[prev] = d.get(prev) + 1 if d.get(prev) else 1
         return count
 
 # @lc code=end
