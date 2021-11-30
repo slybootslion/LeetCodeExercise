@@ -40,11 +40,13 @@ class NumMatrix:
         self.m = [[0 for _ in range(n + 1)] for _ in range(m + 1)]
         for i in range(1, m + 1):
             for j in range(1, n + 1):
-                self.m[i][j] = self.m[i - 1][j] + self.m[i][j - 1] + matrix[i - 1][j - 1] - self.m[i - 1][j - 1]
+                self.m[i][j] = self.m[i - 1][j] + self.m[i][j - 1] + \
+                               matrix[i - 1][j - 1] - self.m[i - 1][j - 1]
         print(self.m)
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        return self.m[row2 + 1][col2 + 1] - self.m[row1][col2 + 1] - self.m[row2 + 1][col1] + self.m[row1][col1]
+        return self.m[row2 + 1][col2 + 1] - self.m[row1][col2 + 1] - \
+               self.m[row2 + 1][col1] + self.m[row1][col1]
 
 # Your NumMatrix object will be instantiated and called as such:
 # obj = NumMatrix(matrix)
