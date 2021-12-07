@@ -14,7 +14,7 @@ Your runtime beats 13.83 % of python3 submissions
 Your memory usage beats 17.52 % of python3 submissions (16.6 MB)
 """
 
-
+"""
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         window = []
@@ -40,5 +40,24 @@ class Solution:
 
         res = res if res != float('inf') else 0
         return res
+"""
+
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        count = 0
+        left = right = 0
+        res = float('inf')
+
+        while right < len(nums):
+            num = nums[right]
+            right += 1
+            count += num
+            while count >= target:
+                res = min(len(nums[left:right]), res)
+                count -= nums[left]
+                left += 1
+
+        return res if res != float('inf') else 0
 
 # @lc code=end
