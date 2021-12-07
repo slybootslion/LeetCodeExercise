@@ -28,27 +28,29 @@ class Solution:
         return d.next
 """
 
-
 """ 
 快慢双指针
+Accepted
+208/208 cases passed (32 ms)
+Your runtime beats 72.98 % of python3 submissions
+Your memory usage beats 5.01 % of python3 submissions (15.2 MB)
 """
 
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        d = ListNode(0, head)
-        fast, slow = head, d
-        
+        p1 = d = ListNode(head.val, head)
+        p2 = head
+
         while n:
-            fast = fast.next
+            p2 = p2.next
             n -= 1
-            
-        while fast:
-            fast = fast.next
-            slow = slow.next
-            
-        slow.next = slow.next.next
-        
+
+        while p2:
+            p1 = p1.next
+            p2 = p2.next
+
+        p1.next = p1.next.next
         return d.next
 
 # @lc code=end
