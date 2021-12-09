@@ -6,7 +6,7 @@
 
 # @lc code=start
 """
-思路有都没有做出来
+思路都没，没有做出来
 Accepted
 88/88 cases passed (44 ms)
 Your runtime beats 7.6 % of python3 submissions
