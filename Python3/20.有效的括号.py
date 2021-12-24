@@ -6,11 +6,14 @@
 
 # @lc code=start
 """
+栈应用的典型题
 Accepted
 91/91 cases passed (36 ms)
 Your runtime beats 45.21 % of python3 submissions
 Your memory usage beats 8.28 % of python3 submissions (15.1 MB)
 """
+
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []

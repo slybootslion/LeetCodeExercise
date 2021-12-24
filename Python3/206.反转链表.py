@@ -10,6 +10,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 """
 双指针与python的骚操作
 Accepted
@@ -25,4 +26,5 @@ class Solution:
         while prev:
             prev.next, prev, cur = cur, prev.next, prev
         return cur
+
 # @lc code=end
