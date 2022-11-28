@@ -110,16 +110,16 @@ class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
         if (nums.size() < 2) return;
-        int p1 = 0;
+        int p = 0;
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] != 0) {
-                nums[p1] = nums[i];
-                p1++;
+                nums[p] = nums[i];
+                p++;
             }
         }
-        while (p1 < nums.size()) {
-            nums[p1] = 0;
-            p1++;
+        while (p < nums.size()) {
+            nums[p] = 0;
+            p++;
         }
     }
 };
