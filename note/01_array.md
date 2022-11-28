@@ -57,7 +57,6 @@ public:
 };
 ```
 
-
 ### 26. 删除有序数组中的重复项
 地址：[26. 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
@@ -82,7 +81,7 @@ class Solution:
 
 思路二：
 1、因为就是要剔除重复的元素，所以不存在向后遍历时元素被覆盖掉找不到的状态
-2、所以，遍历数组，遇到重复项，就将后面位置将前面重复位置覆盖，并且记录位置后移
+2、所以，遍历数组，遇到重复项，就用后面位置将前面重复位置覆盖，并且记录位置后移
 3、最终返回当前位置
 时间复杂度On
 
@@ -97,6 +96,31 @@ public:
                 n++;
             }
         return n;
+    }
+};
+```
+
+### 283. 移动零
+地址：[283. 移动零](https://leetcode.cn/problems/move-zeroes/)
+
+与上面的题是同一个思路，如果数不为零，就留下，后面多出来的数改为零即可，时间复杂度On。
+
+```c++
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        if (nums.size() < 2) return;
+        int p1 = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != 0) {
+                nums[p1] = nums[i];
+                p1++;
+            }
+        }
+        while (p1 < nums.size()) {
+            nums[p1] = 0;
+            p1++;
+        }
     }
 };
 ```
