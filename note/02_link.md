@@ -1,7 +1,5 @@
 # 链表
 
-## 先做几个题
-
 ### 206. 反转链表
 地址：[206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 
@@ -30,7 +28,7 @@ public:
 思路比较复杂，毕竟是一个困难难度问题，简单点说分三步：
 找到k个数量的链表，记录下这个链表的前一个节点和后一个节点，反转，然后将记录的前一个节点，连接到反转后的头节点，尾节点指向记录的后一个节点，分段去做。
 
-```c++
+```js
 const getEnd = (head, k) => {
     while (head != null) {
         k--
@@ -77,4 +75,70 @@ var reverseKGroup = function (head, k) {
     }
     return protect.next
 };
+```
+
+### 141. 环形链表
+地址：[141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
+
+思路（最优解）：
+快慢指针，On的时间，O1的空间，如果有环两个指针必定会相遇，如果无环，快指针会先到达终点（遇到null）。
+其他还有一些方法，比如挂一个垃圾数据做判断，或者规定时间内，是否能运算到null，如果运算不到就是环，但是都没上面这个方法好，上面这个方法是最优解。
+
+```c++
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (fast == slow) return true;
+        }
+        return false;
+    }
+};
+```
+
+### 142. 环形链表 II
+地址：[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)
+
+思路：
+最优解是一个数学解法，先用快慢指针来判断是不是一个环链表，如果是，从head走到slow指针相遇的点，就是必定是环的起点。
+
+```c++
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while (fast != nullptr && fast->next != nullptr) {
+            fast = fast->next->next;
+            slow = slow->next;
+            if (fast == slow) {
+                while (head != slow) {
+                    head = head->next;
+                    slow = slow->next;
+                }
+                return head;
+            }
+        }
+        return nullptr;
+    }
+};
+```
+
+如果实际工作中，遇到这样的问题，直接开个map来存储判断。
+
+```python
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        m = {}
+        while head is not None:
+            if m.get(head) is None:
+                m[head] = head
+                head = head.next
+            else:
+                return m.get(head)
+        return None
 ```
