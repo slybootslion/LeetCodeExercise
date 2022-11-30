@@ -107,5 +107,62 @@ public:
 地址：[224. 基本计算器](https://leetcode.cn/problems/basic-calculator/)
 
 ```c++
+class Solution {
+public:
+    int calculate(string s) {
+        stack<char> ops;
+        vector<string> tokens;
+        long long val = 0;
+        bool num_started = false; // 是否正在解析一个数值，数值后面遇到第一个符号时，要把解析好的数存起来
+        bool need_zero = true; // 是否需要补0，例如 "-48 + +48"，要补成"0-48 + 0+48"
+        for (char ch : s) {
+            // parse一个数值
+            if (ch >= '0' && ch <= '9') {
+                val = val * 10 + ch - '0'; //将数字字符串转为数字 "13" -> 13
+                num_started = true;
+                continue;
+            } else if (num_started) { // 数值后面第一次遇到符号
+                tokens.push_back(to_string(val));
+                num_started = false;
+                need_zero = false; // 加减号跟在数值后面，不需要补0，例如"10-1"
+                val = 0;
+            }
+            if (ch == ' ') continue;
+            if (ch == '(') {
+                ops.push(ch);
+                need_zero = true;
+                continue;
+            }
+            if (ch == ')') {
+                while(ops.top() != '(') { // 两个括号之间的都可以计算了
+                    tokens.push_back(string(1, ops.top()));
+                    ops.pop();
+                }
+                ops.pop();
+                need_zero = false;
+                continue;
+            }
+            // 处理+-*/
+            if (need_zero) tokens.push_back("0");
+            while (!ops.empty() && getRank(ops.top()) >= getRank(ch)) { // 前面的符号优先级更高，就可以计算了，例如1*2+3，遇到+时，*就可以算了
+                tokens.push_back(string(1, ops.top()));
+                ops.pop();
+            }
+            ops.push(ch);
+            need_zero = true; // +-后面跟着+-号，需要补0，例如"3 + -1"，变为"3 + 0-1"
+        }
+        if (num_started) tokens.push_back(to_string(val));
+        while (!ops.empty()) {  // 最后剩余的符号都要取出来
+            tokens.push_back(string(1, ops.top()));
+            ops.pop();
+        }
+        return evalRPN(tokens); // 这个方法就是上面那道题原封不动，这里就不多余写了
+    }
 
+    int getRank(char ch) {
+        if (ch == '+' || ch == '-') return 1;
+        if (ch == '*' || ch == '/') return 2;
+        return 0;
+    }
+};
 ```
