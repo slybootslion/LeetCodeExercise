@@ -142,3 +142,19 @@ class Solution:
                 return m.get(head)
         return None
 ```
+
+### 24. 两两交换链表中的节点
+地址：[24. 两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/)
+
+```python
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        h = ListNode(None)
+        cur, cur.next = h, head
+        while cur.next and cur.next.next:
+            a = cur.next
+            b = a.next
+            cur.next, b.next, a.next = b, a, b.next
+            cur = a # 挪指针
+        return h.next
+```
