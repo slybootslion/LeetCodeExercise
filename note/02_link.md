@@ -158,3 +158,33 @@ class Solution:
             cur = a # 挪指针
         return h.next
 ```
+
+### 876. 链表的中间结点
+地址：[876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/)
+
+思路：
+直觉且易懂的办法，就是先遍历一遍计数，然后从头节点开始继续遍历所计数量的一半（`count /= 2`），时间复杂度也是On。
+不过更装逼的办法是，两个指针，一个走两步，一个走一步，快指针走到头，返回慢指针即可。
+
+```c++
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode *p1 = head;
+        ListNode *p2 = head;
+        while (p2 && p2->next) {
+            p2 = p2->next->next;
+            p1 = p1->next;
+        }
+        return p1;
+    }
+};
+```
+
+## 链表基础题
+
+* 单链表反转 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
+* 链表中环的检测 [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
+* 两个有序链表的合并 [21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/)
+* 删除链表倒数第n个节点 [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
+* 求链表的中间节点 [876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/)
