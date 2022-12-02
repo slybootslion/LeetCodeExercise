@@ -181,6 +181,31 @@ public:
 };
 ```
 
+### 83. 删除排序链表中的重复元素
+地址：[83. 删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
+
+思路：
+最好建立一个守卫，链接到head上，返回守卫的next。
+删除就是基本操作，不过要注意，为了防止连续相同值的节点连续出现，删除操作时，跳过链表指针继续走。
+
+```c++
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        ListNode *p = new ListNode(0, head);
+        while(head && head->next) {
+            if (head->val == head->next->val) {
+                head->next = head->next->next;
+                continue;
+            }
+            head = head->next;
+        }
+        return p->next;
+    }
+};
+```
+
+
 ## 链表基础题
 
 * 单链表反转 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
