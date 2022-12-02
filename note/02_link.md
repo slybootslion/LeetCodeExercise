@@ -205,7 +205,6 @@ public:
 };
 ```
 
-
 ## 链表基础题
 
 * 单链表反转 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
