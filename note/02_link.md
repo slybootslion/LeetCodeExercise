@@ -205,6 +205,37 @@ public:
 };
 ```
 
+### 92. 反转链表 II
+地址：[92. 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii/)
+
+思路：
+和反转链表一样，只是要额外多走几步到反转的前驱节点，然后反转到指定位置，即：边界不一样。
+注意保存前驱节点，反转后要连接到前驱节点，以及尾部节点链接上。
+
+```python
+class Solution:
+    def reverseBetween(self, head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
+        dummy = ListNode()
+        dummy.next = head
+        p = dummy
+        for i in range(left - 1):
+            p = p.next
+        pre = start = p.next
+        cur = pre.next
+
+        for i in range(right - left):
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+
+        p.next = pre
+        start.next = cur
+
+        return dummy.next
+```
+
+
 ## 链表基础题
 
 * 单链表反转 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
