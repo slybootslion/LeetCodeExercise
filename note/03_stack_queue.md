@@ -166,3 +166,65 @@ public:
     }
 };
 ```
+
+### 232. 用栈实现队列
+地址：[232. 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/)
+
+思路，需要两个栈来捣腾数据。input栈只管放入，output栈只管取出。
+如果遇到需要pop或者peek的时候，就把input栈中的数据move到output中，再返回对应数据。
+move函数的作用，就是如果output栈为空，就将input栈中的数，全部进栈到output中，方便后续出队列，或者获取队列头部的作用。
+
+```python
+class MyQueue:
+    def __init__(self):
+        self.input_stack = []
+        self.output_stack = []
+
+    def push(self, x: int) -> None:
+        self.input_stack.append(x)
+
+    def pop(self) -> int:
+        self.move()
+        return self.output_stack.pop()
+
+    def peek(self) -> int:
+        self.move();
+        return self.output_stack and self.output_stack[-1]
+
+    def empty(self) -> bool:
+        return not self.input_stack and not self.output_stack
+    
+    # 将input栈中的数，移动到output栈中
+    def move(self):
+        if not self.output_stack:
+            while self.input_stack:
+                self.output_stack.append(self.input_stack.pop())
+```
+
+### 225. 用队列实现栈
+地址：[225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
+
+思路同上一题，用两个队列来控制，如果有数据进来，就要倒腾一下数据，全部由进入的管理，倒腾到出的里面。出栈、查看全部用出队列来进行。
+
+```python
+class MyStack:
+    def __init__(self):
+        self.output_q = []
+        self.input_q = []
+
+    def push(self, x: int) -> None:
+        self.input_q.append(x)
+        while self.output_q:
+            self.input_q.append(self.output_q.pop(0))
+        self.output_q, self.input_q = self.input_q, self.output_q
+
+    def pop(self) -> int:
+        return self.output_q.pop(0)
+
+    def top(self) -> int:
+        return self.output_q[0]
+
+
+    def empty(self) -> bool:
+        return not self.output_q
+```
