@@ -62,3 +62,26 @@ public:
     }
 };
 ```
+
+
+### 11. 盛最多水的容器
+地址：[167. 两数之和 II - 输入有序数组」](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+
+思路：
+对撞双指针，两头往中间移动，每次移动短的那根，将算出来面积最大值返回。
+
+```c++
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int i = 0, j = height.size() - 1;
+        int res = 0;
+        while (i < j) {
+            int r = min(height[i], height[j]) * (j - i);
+            res = max(res, r);
+            height[i] < height[j] ? i++ : j--;
+        }
+        return res;
+    }
+};
+```
