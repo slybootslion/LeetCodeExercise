@@ -122,3 +122,24 @@ public:
     }
 };
 ```
+
+### 27. 移除元素
+地址：[27. 移除元素](https://leetcode.cn/problems/remove-element/)
+
+思路，与上上一题相同，甚至更简单。要求是原地删除，无非就是碰到不同的再留下的问题。
+
+```c++
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        int k = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            if (nums[i] != val) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+        return k;
+    }
+};
+```
