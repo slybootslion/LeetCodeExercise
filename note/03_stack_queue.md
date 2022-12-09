@@ -228,3 +228,48 @@ class MyStack:
     def empty(self) -> bool:
         return not self.output_q
 ```
+
+### 703. 数据流中的第 K 大元素
+地址：[225. 用队列实现栈](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
+
+思路：
+这其实是一个“优先队列”的题，利用c++中的标准库priority_queue（小顶堆）可以轻松做到，如果没有优先队列的标准库(比如JavaScript)，可以自己用一个list来维护，或者实现一个小顶堆（太费劲）。
+
+```c++
+class KthLargest {
+public:
+    KthLargest(int k, vector<int>& nums) {
+        this->k = k;
+        for (auto num : nums) add(num);
+    }
+    
+    int add(int val) {
+        q.push(val);
+        if (q.size() > k) q.pop();
+        return q.top();
+    }
+
+private:
+    int k;
+    priority_queue <int, vector<int>, greater<int>> q;
+};
+```
+
+### 739. 每日温度
+地址：[225. 用队列实现栈](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
+
+思路：通过一个栈，来存储当前最高温度的下标，如果遇见比存储下标温度高的就记录间距，并出栈。
+
+```python
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        length = len(temperatures)
+        s = []
+        res = [0] * length
+        for i in range(length):
+            while s and temperatures[i] > temperatures[s[-1]]:
+                top = s.pop()
+                res[top] = i - top
+            s.append(i)
+        return res
+```
