@@ -273,3 +273,41 @@ class Solution:
             s.append(i)
         return res
 ```
+
+### 239. 滑动窗口最大值
+地址：[239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
+
+双层循环现在不能写了，会超时，不过解法本身没有问题，贴在下面
+```python
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        p1, p2 = 0, k - 1
+        length = len(nums)
+        res = []
+        while p2 < length: 
+            _max = max(nums[p1: p2 + 1])
+            res.append(_max)
+            p1 += 1
+            p2 += 1
+        return res
+```
+
+线性时间内的解法需要使用双端队列。定义一个双端队列，来维护递减的值，滑动窗口中最大的数，就是双端队列的队头。
+```python
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        length = len(nums)
+        res = []
+        q = collections.deque() # 初始化双端队列
+        for i in range(length):
+            while len(q) and nums[q[-1]] < nums[i]:
+                q.pop() # 当队尾元素小于当前元素时，将队尾元素的索引不断出队，直至队尾元素大于等于当前元素
+            q.append(i) # 入队当前元素索引
+            while len(q) and q[0] <= i - k:
+                q.popleft() # 当队头元素的索引已经排除在滑动窗口之外时，将队头元素索引出队 
+            if i >= k - 1: # 判断滑动窗口的状态，只有在被遍历的元素个数大于k的时候，才更新结果数组
+                res.append(nums[q[0]])
+        return res
+```
+
+
