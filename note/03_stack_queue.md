@@ -310,6 +310,46 @@ class Solution:
         return res
 ```
 
+### 84. 柱状图中最大的矩形
+地址：[84. 柱状图中最大的矩形](https://leetcode.cn/problems/largest-rectangle-in-histogram/)
+
+思路：
+单调栈，确定递增递减关系，关键在于考虑“前面不能影响后面”的条件。时间复杂度On。
+
+单调栈题目套路模板：
+```js
+for 每个元素:
+    while (栈顶于新元素不满足单调性)
+        出栈，更新答案，累加；
+    入栈
+```
+
+```c++
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        heights.push_back(0); // 帮助我们再最后把栈清空
+        stack<Rect> s;
+        int ans = 0;
+        for (int h: heights) {
+            int accumulated_width = 0;
+            while (!s.empty() && s.top().height >= h) {
+                accumulated_width += s.top().width;
+                ans = max(ans, accumulated_width * s.top().height);
+                s.pop();        
+            }
+            s.push({h, accumulated_width + 1});
+        }
+        return ans;
+    }
+private:
+    struct Rect {
+        int height;
+        int width;
+    };
+};
+```
+
 ### 关于二叉树BFS的套路
 可以背诵
 ```js
