@@ -23,7 +23,7 @@ public:
 ```
 
 ### 15. 三数之和
-地址：[167. 两数之和 II - 输入有序数组」](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+地址：[15. 三数之和](https://leetcode.cn/problems/3sum/)
 
 思路：
 先固定一个点，在剩下的数组中，求出所有两数之和等于固定点位的数值，即：`nums[j] + nums[k] = -nums[i]`。这个时候，就是调用类似上一题两数之和的函数。
@@ -65,7 +65,7 @@ public:
 
 
 ### 11. 盛最多水的容器
-地址：[167. 两数之和 II - 输入有序数组」](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+地址：[11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
 
 思路：
 对撞双指针，两头往中间移动，每次移动短的那根，将算出来面积最大值返回。

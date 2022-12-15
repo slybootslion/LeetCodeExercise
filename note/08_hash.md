@@ -27,3 +27,28 @@ class Solution:
             d2[ch2] = d2.get(ch2, 0) + 1
         return d1 == d2
 ```
+
+### 1. 两数之和
+地址：[1. 两数之和](https://leetcode.cn/problems/two-sum/)
+
+哈希表的典型用法
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> mp;
+        map<int, int>::iterator it;
+        for (int i = 0; i < nums.size(); i++) {
+            int num = nums[i];
+            it = mp.find(target - num);
+            if (it != mp.end()) {
+                return {it->second, i};
+            } else {
+                mp[num] = i;
+            }
+        }
+        return {};
+    }
+};
+```
