@@ -79,3 +79,22 @@ class Solution:
         dfs(0)    
         return res
 ```
+
+### 77. 组合
+地址：[77. 组合](https://leetcode.cn/problems/combinations/)
+
+```python
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        res, cur = [], []
+        def dfs(begin):
+            if len(cur) == k:
+                res.append(cur[:])
+                return
+            for i in range(n + 1)[begin:]:
+                cur.append(i)
+                dfs(i + 1)
+                cur.pop()
+        dfs(1)
+        return res
+```
