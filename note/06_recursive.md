@@ -44,8 +44,7 @@ class Solution:
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         length = len(nums)
-        res = []
-        curr = []
+        res, curr = [], []
         m = {}
         def dfs(nth):
             if nth == length:
