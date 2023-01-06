@@ -4,7 +4,7 @@
 
 地址：[98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
 
-思路一： 
+思路一：
 因为是二叉搜索树，所以按照二叉搜索树的特点，左子树的所有节点，一定比根节点小，右子树的所有节点，一定比根节点大，递归进行判断。
 
 ```c++
@@ -29,6 +29,7 @@ public:
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         res = []
+
         def dfs(node):
             if not node:
                 return
@@ -37,6 +38,7 @@ class Solution:
             res.append(node.val)
             if node.right:
                 dfs(node.right)
+
         dfs(root)
 
         def check(l):
@@ -44,6 +46,7 @@ class Solution:
                 if i > 0 and l[i] <= l[i - 1]:
                     return False
             return True
+
         return check(res)
 ```
 
@@ -61,7 +64,7 @@ class Solution:
             return root
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
-        return left if not right else right if not left else root # 如果左子树没有就是右子树，右子树也没有就是根
+        return left if not right else right if not left else root  # 如果左子树没有就是右子树，右子树也没有就是根
 ```
 
 还有一个衍生题：[235. 二叉搜索树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
@@ -72,22 +75,151 @@ class Solution:
 // 递归写法
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if (p->val < root->val && q->val < root->val) return lowestCommonAncestor(root->left, p, q);
-        if (p->val > root->val && q->val > root->val) return lowestCommonAncestor(root->right, p, q);
-        return root;
-    }
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+if (p->val < root->val && q->val < root->val) return lowestCommonAncestor(root->left, p, q);
+if (p->val > root->val && q->val > root->val) return lowestCommonAncestor(root->right, p, q);
+return root;
+}
 };
 // 迭代写法
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        while (root) {
-            if (p->val < root->val && q->val < root->val) root = root->left;
-            else if (p->val > root->val && q->val > root->val) root = root->right;
-            else return root;
-        }
-        return nullptr;
-    }
+TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+while (root) {
+if (p->val < root->val && q->val < root->val) root = root->left;
+else if (p->val > root->val && q->val > root->val) root = root->right;
+else return root;
+}
+return nullptr;
+}
 };
+```
+
+## 二叉树的各种遍历
+
+主要是迭代解法的问题，递归很简单，迭代会比较绕一些。
+
+### 144. 二叉树的前序遍历
+
+地址：[144. 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/submissions/)
+
+递归解法：
+
+```python
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+            res.append(node.val)
+            dfs(node.left)
+            dfs(node.right)
+
+        dfs(root)
+        return res
+```
+
+迭代解法：
+
+```python
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res, st = [], []
+        if not root:
+            return res
+        st.append(root)
+        while st:
+            cur = st.pop()
+            res.append(cur.val)
+            if cur.right:
+                st.append(cur.right)
+            if cur.left:
+                st.append(cur.left)
+        return res
+```
+
+### 145. 二叉树的后序遍历
+
+地址：[145. 二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
+
+递归方法：
+
+```python
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+            if node.left:
+                dfs(node.left)
+            if node.right:
+                dfs(node.right)
+            res.append(node.val)
+
+        dfs(root)
+        return res
+```
+
+迭代方法：
+
+```python
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res, st = deque(), []
+        if not root:
+            return list(res)
+        st.append(root)
+        while st:
+            cur = st.pop()
+            res.appendleft(cur.val)
+            if cur.left:
+                st.append(cur.left)
+            if cur.right:
+                st.append(cur.right)
+        return list(res)
+```
+
+### 94. 二叉树的中序遍历
+
+地址：[94. 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
+
+递归方法：
+
+```python
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+
+        def dfs(node):
+            if not node:
+                return
+            if node.left:
+                dfs(node.left)
+            res.append(node.val)
+            if node.right:
+                dfs(node.right)
+
+        dfs(root)
+        return res
+```
+
+迭代解法：
+
+```python
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res, st = [], []
+        cur = root
+        while cur or st:
+            while cur:
+                st.append(cur)
+                cur = cur.left
+            cur = st.pop()
+            res.append(cur.val)
+            cur = cur.right
+        return res
 ```
