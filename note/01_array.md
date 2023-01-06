@@ -1,6 +1,7 @@
 # 数组
 
 ### 88. 合并两个有序数组
+
 地址：[88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/)
 
 思路一:
@@ -56,6 +57,7 @@ public:
 ```
 
 ### 26. 删除有序数组中的重复项
+
 地址：[26. 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
 
 思路一：
@@ -99,6 +101,7 @@ public:
 ```
 
 ### 283. 移动零
+
 地址：[283. 移动零](https://leetcode.cn/problems/move-zeroes/)
 
 与上面的题是同一个思路，如果数不为零，就留下，后面多出来的数改为零即可，时间复杂度On。
@@ -124,6 +127,7 @@ public:
 ```
 
 ### 27. 移除元素
+
 地址：[27. 移除元素](https://leetcode.cn/problems/remove-element/)
 
 思路，与上上一题相同，甚至更简单。要求是原地删除，无非就是碰到不同的再留下的问题。

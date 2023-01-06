@@ -1,6 +1,7 @@
 # 栈、队列
 
 ### 20. 有效的括号
+
 地址：[20. 有效的括号](https://leetcode.cn/problems/valid-parentheses/)
 
 思路：最近相关性的问题，一般就是栈的问题。
@@ -29,6 +30,7 @@ class Solution:
 ```
 
 ### 155. 最小栈
+
 地址：[155. 最小栈](https://leetcode.cn/problems/min-stack/)
 
 思路：
@@ -64,8 +66,8 @@ private:
 };
 ```
 
-
 ### 150. 逆波兰表达式求值
+
 地址：[150. 逆波兰表达式求值](https://leetcode.cn/problems/evaluate-reverse-polish-notation/)
 
 思路（后缀表达式求值）：
@@ -104,6 +106,7 @@ public:
 ```
 
 ### 224. 基本计算器
+
 地址：[224. 基本计算器](https://leetcode.cn/problems/basic-calculator/)
 
 ```c++
@@ -168,6 +171,7 @@ public:
 ```
 
 ### 232. 用栈实现队列
+
 地址：[232. 用栈实现队列](https://leetcode.cn/problems/implement-queue-using-stacks/)
 
 思路，需要两个栈来捣腾数据。input栈只管放入，output栈只管取出。
@@ -202,6 +206,7 @@ class MyQueue:
 ```
 
 ### 225. 用队列实现栈
+
 地址：[225. 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
 
 思路同上一题，用两个队列来控制，如果有数据进来，就要倒腾一下数据，全部由进入的管理，倒腾到出的里面。出栈、查看全部用出队列来进行。
@@ -230,10 +235,12 @@ class MyStack:
 ```
 
 ### 703. 数据流中的第 K 大元素
+
 地址：[225. 用队列实现栈](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
 
 思路：
-这其实是一个“优先队列”的题，利用c++中的标准库priority_queue（小顶堆）可以轻松做到，如果没有优先队列的标准库(比如JavaScript)，可以自己用一个list来维护，或者实现一个小顶堆（太费劲）。
+这其实是一个“优先队列”的题，利用c++中的标准库priority_queue（小顶堆）可以轻松做到，如果没有优先队列的标准库(比如JavaScript)
+，可以自己用一个list来维护，或者实现一个小顶堆（太费劲）。
 
 ```c++
 class KthLargest {
@@ -256,6 +263,7 @@ private:
 ```
 
 ### 739. 每日温度
+
 地址：[225. 用队列实现栈](https://leetcode.cn/problems/kth-largest-element-in-a-stream/)
 
 思路：通过一个栈，来存储当前最高温度的下标，如果遇见比存储下标温度高的就记录间距，并出栈。
@@ -275,9 +283,11 @@ class Solution:
 ```
 
 ### 239. 滑动窗口最大值
+
 地址：[239. 滑动窗口最大值](https://leetcode.cn/problems/sliding-window-maximum/)
 
 双层循环现在不能写了，会超时，不过解法本身没有问题，贴在下面
+
 ```python
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -293,6 +303,7 @@ class Solution:
 ```
 
 线性时间内的解法需要使用双端队列。定义一个双端队列，来维护递减的值，滑动窗口中最大的数，就是双端队列的队头。
+
 ```python
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -311,18 +322,20 @@ class Solution:
 ```
 
 ### 84. 柱状图中最大的矩形
+
 地址：[84. 柱状图中最大的矩形](https://leetcode.cn/problems/largest-rectangle-in-histogram/)
 
 思路：
 单调栈，确定递增递减关系，关键在于考虑“前面不能影响后面”的条件。时间复杂度On。
 
 单调栈题目套路模板：
-```js
+
+`
 for 每个元素:
-    while (栈顶于新元素不满足单调性)
-        出栈，更新答案，累加；
-    入栈
-```
+  while (栈顶于新元素不满足单调性)
+    出栈，更新答案，累加；
+      入栈
+`
 
 ```c++
 class Solution {
@@ -351,22 +364,26 @@ private:
 ```
 
 ### 关于二叉树BFS的套路
+
 可以背诵
+
 ```js
-fucntion BFS (root) {
-    const queue = [] // 初始化队列
-    queue.push(root)
-    // 队列不为空，说明没有遍历完全
-    while (queue.length) {
-        const top = queue[0] // 取出队头元素
-        console.log(top.val) // do something 访问元素
-        if (top.left){ // 如果有左子树存在，左子树入队
-            queue.push(top.left)
-        }
-        if (top.right){ // 如果有右子树存在，右子树入队
-            queue.push(top.right)
-        }
-        queue.shift() // 访问完毕，队头元素出队
+fucntion
+BFS(root)
+{
+  const queue = [] // 初始化队列
+  queue.push(root)
+  // 队列不为空，说明没有遍历完全
+  while (queue.length) {
+    const top = queue[0] // 取出队头元素
+    console.log(top.val) // do something 访问元素
+    if (top.left) { // 如果有左子树存在，左子树入队
+      queue.push(top.left)
     }
+    if (top.right) { // 如果有右子树存在，右子树入队
+      queue.push(top.right)
+    }
+    queue.shift() // 访问完毕，队头元素出队
+  }
 }
 ```

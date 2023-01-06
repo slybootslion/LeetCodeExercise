@@ -1,6 +1,7 @@
 # 前缀和
 
 ### 1248. 统计「优美子数组」
+
 地址：[1248. 统计「优美子数组」](https://leetcode.cn/problems/count-number-of-nice-subarrays/)
 
 ```python

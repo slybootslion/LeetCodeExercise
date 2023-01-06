@@ -1,9 +1,11 @@
 # 哈希表
 
 ### 242. 有效的字母异位词
+
 地址：[242. 有效的字母异位词](https://leetcode.cn/problems/valid-anagram/)
 
 如果想不到哈希表的方式，最简单的是进行排序后再比较，时间复杂度O(NlogN)
+
 ```c++
 aclass Solution {
 public:
@@ -15,6 +17,7 @@ public:
 ```
 
 更有效率的解法是哈希表
+
 ```python
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -29,6 +32,7 @@ class Solution:
 ```
 
 ### 1. 两数之和
+
 地址：[1. 两数之和](https://leetcode.cn/problems/two-sum/)
 
 哈希表的典型用法

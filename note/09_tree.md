@@ -1,6 +1,7 @@
 # 树
 
 ### 98. 验证二叉搜索树
+
 地址：[98. 验证二叉搜索树](https://leetcode.cn/problems/validate-binary-search-tree/)
 
 思路一：
@@ -47,6 +48,7 @@ class Solution:
 ```
 
 ### 236. 二叉树的最近公共祖先
+
 地址：[236. 二叉树的最近公共祖先](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/)
 
 思路：

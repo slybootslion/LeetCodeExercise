@@ -1,9 +1,11 @@
 # 链表
 
 ### 206. 反转链表
+
 地址：[206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)
 
 思路：链表永远指向的是下一个节点，修改节点指向后，下一个节点的记录就会丢失，所以需要一个额外的空间来记录下一个节点。
+
 ```c++
 class Solution {
 public:
@@ -23,6 +25,7 @@ public:
 ```
 
 ### 25. K 个一组翻转链表
+
 地址：[25. K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
 
 思路比较复杂，毕竟是一个困难难度问题，简单点说分三步：
@@ -30,54 +33,55 @@ public:
 
 ```js
 const getEnd = (head, k) => {
-    while (head != null) {
-        k--
-        if (k == 0) break
-        head = head.next
-    }
-    return head
+  while (head != null) {
+    k--
+    if (k == 0) break
+    head = head.next
+  }
+  return head
 }
 
 // 处理head到end之间的k-1条边的反转
 const reverseList = (head, end) => {
-    if (head == end) return
-    let last = head
-    head = head.next
-    while (head != end) {
-        const nextHead = head.next
-        head.next = last
-        last = head
-        head = nextHead
-    }
-    end.next = last
+  if (head == end) return
+  let last = head
+  head = head.next
+  while (head != end) {
+    const nextHead = head.next
+    head.next = last
+    last = head
+    head = nextHead
+  }
+  end.next = last
 }
 
 var reverseKGroup = function (head, k) {
-    // 保护节点
-    let protect = new ListNode(0, head)
-    // 分组，找到每一组的开始和结尾，按组遍历
-    let last = protect // last = 上一组结尾
-    while (head != null) {
-        let end = getEnd(head, k);
-        if (end == null) break;
-        
-        const nextGroupHead = end.next;
-        // 反转处理函数
-        reverseList(head, end)
-        // 上一组跟本组的新开始（旧end）建立联系
-        last.next = end
-        // 本组新的结尾（head）与下一组建立联系
-        head.next = nextGroupHead
+  // 保护节点
+  let protect = new ListNode(0, head)
+  // 分组，找到每一组的开始和结尾，按组遍历
+  let last = protect // last = 上一组结尾
+  while (head != null) {
+    let end = getEnd(head, k);
+    if (end == null) break;
 
-        // 分组遍历
-        last = head
-        head = nextGroupHead
-    }
-    return protect.next
+    const nextGroupHead = end.next;
+    // 反转处理函数
+    reverseList(head, end)
+    // 上一组跟本组的新开始（旧end）建立联系
+    last.next = end
+    // 本组新的结尾（head）与下一组建立联系
+    head.next = nextGroupHead
+
+    // 分组遍历
+    last = head
+    head = nextGroupHead
+  }
+  return protect.next
 };
 ```
 
 ### 141. 环形链表
+
 地址：[141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
 
 思路（最优解）：
@@ -101,6 +105,7 @@ public:
 ```
 
 ### 142. 环形链表 II
+
 地址：[142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/)
 
 思路：
@@ -144,6 +149,7 @@ class Solution:
 ```
 
 ### 24. 两两交换链表中的节点
+
 地址：[24. 两两交换链表中的节点](https://leetcode.cn/problems/swap-nodes-in-pairs/)
 
 ```python
@@ -160,6 +166,7 @@ class Solution:
 ```
 
 ### 876. 链表的中间结点
+
 地址：[876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/)
 
 思路：
@@ -182,6 +189,7 @@ public:
 ```
 
 ### 83. 删除排序链表中的重复元素
+
 地址：[83. 删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/)
 
 思路：
@@ -206,6 +214,7 @@ public:
 ```
 
 ### 92. 反转链表 II
+
 地址：[92. 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii/)
 
 思路：
@@ -234,7 +243,6 @@ class Solution:
 
         return dummy.next
 ```
-
 
 ## 链表基础题
 
