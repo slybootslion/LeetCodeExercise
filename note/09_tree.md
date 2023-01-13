@@ -95,6 +95,27 @@ public:
 };
 ```
 
+### 关于二叉树BFS的套路
+可以背诵
+```js
+fucntion BFS (root) {
+    const queue = [] // 初始化队列
+    queue.push(root)
+    // 队列不为空，说明没有遍历完全
+    while (queue.length) {
+        const top = queue[0] // 取出队头元素
+        console.log(top.val) // do something 访问元素
+        if (top.left){ // 如果有左子树存在，左子树入队
+            queue.push(top.left)
+        }
+        if (top.right){ // 如果有右子树存在，右子树入队
+            queue.push(top.right)
+        }
+        queue.shift() // 访问完毕，队头元素出队
+    }
+}
+```
+
 ## 二叉树的各种遍历
 
 主要是迭代解法的问题，递归很简单，迭代会比较绕一些。
